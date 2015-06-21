@@ -8,15 +8,30 @@
 
 		var todoLists = [
 			{
-				name: "Default List",
+				name: "Vacation TODOs",
 				items: [
 					{
 						todo: "buy plane tickets",
+						done: false
+					},
+					{
+						todo: "make reservations",
+						done: true
+					}
+				]
+			},
+			{
+				name: "Another List",
+				items: [
+					{
+						todo: "buy milk",
 						done: false
 					}
 				]
 			}
 		];
+
+		that.currentList = {};
 
 		that.getLists = function () {
 			return todoLists;

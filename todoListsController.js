@@ -2,13 +2,13 @@
 	
 	var app = angular.module("todoApp");
 
-	app.controller("todoListsController", function ($scope, todoService) {
+	app.controller("todoListsController", function ($scope, todoService, $rootScope) {
 		
 		var model = {};
 
 		// Display list's contents
-		var viewList = function (listIndex) {
-			
+		var viewList = function (list) {
+			$rootScope.$broadcast("listSelected", list);
 		};
 
 		// Create a TODO list and add it to Lists
@@ -24,6 +24,7 @@
 
 		// Defaults
 		model.todoLists = todoService.getLists();
+		model.viewList = viewList;
 
 		$scope.model = model;
 

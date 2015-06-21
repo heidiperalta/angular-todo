@@ -9,15 +9,18 @@
 			<h1>TODOs</h1>
 			<ul>
 				<li ng-repeat="list in model.todoLists">
-					<a href="#" ng-click="model.viewList">{{ list.name }}</a>
+					<a href="#" ng-click="model.viewList(list)">{{ list.name }}</a>
 				</li>
 			</ul>
 		</div>
 		<div ng-controller="todoListController" style="float: right;">
-			<h1>{{ model.todoList.name }}</h1>
+			<h1>{{ currentList.name }}</h1>
 			<ul>
-				<li ng-repeat="item in model.todoList.items">
-					<input type="checkbox" checked={{item.done}} />
+				<li ng-repeat="item in currentList.items">
+					<input type="checkbox" ng-model="item.done" 
+						ng-true-value=true 
+						ng-false-value=false 
+					/>
 					<input type="text" value={{item.todo}} />
 				</li>
 			</ul>

@@ -6,7 +6,6 @@
 		
 		var model = {};
 
-
 		// Add item to a TODO list
 		var addItem = function (todoItem) {
 			// body...
@@ -22,16 +21,19 @@
 			// body...
 		};
 
-
-		// Default
-		var lists = todoService.getLists();
-
-		if (lists && lists.length > 0) {
-			model.todoList = lists[0];
-		}
-
+		
 		$scope.model = model;
 
+
+		// Display current list
+		var unsubscribe = $scope.$on("listSelected", function (sender, data) {
+			$scope.currentList = data;
+		});
+
+		//make sure we clean up.
+		$scope.$on('$destroy', function () {
+			unsubscribe();
+		});
 	});
 
 }());
