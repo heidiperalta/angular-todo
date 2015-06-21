@@ -7,15 +7,19 @@
 	<div style="width: 50%;">
 		<div ng-controller="todoListsController" style="float: left;">
 			<h1>TODOs</h1>
-			<ul>
-				<li ng-repeat="list in model.todoLists">
-					<a href="#" ng-click="model.viewList(list)">{{ list.name }}</a>
-				</li>
-			</ul>
-		</div>
+				<form ng-submit="model.addList(model.newListName)">
+					<input type="text" ng-model="model.newListName" /> <input type="submit" value="Add New" />
+				</form>
+				<ul>
+					<li ng-repeat="list in model.todoLists">
+						<a href="#" ng-click="model.viewList(list)">{{ list.name }}</a>
+						<input type="button" value="X" ng-click="model.removeList($index)" />
+					</li>
+				</ul>
+			</div>
 		<div ng-controller="todoListController" style="float: right;">
 			<h1>{{ currentList.name }}</h1>
-			<ul>
+			<ul style="list-style-type: none;">
 				<li ng-repeat="item in currentList.items">
 					<input type="checkbox" ng-model="item.done" 
 						ng-true-value=true 

@@ -6,25 +6,43 @@
 		
 		var model = {};
 
-		// Display list's contents
-		var viewList = function (list) {
+		var publishListMessage = function (list) {
 			$rootScope.$broadcast("listSelected", list);
 		};
 
+		// Display list's contents
+		model.viewList = function (list) {
+			publishListMessage(list);
+		};
+
 		// Create a TODO list and add it to Lists
-		var addList = function (name, items) {
-			// body...
+		model.addList = function (name) {
+
+			var newList = {
+				name: name,
+				items: []
+			}
+			
+			model.todoLists.unshift(newList);
+			publishListMessage(newList);
+
+			model.newListName = "";
 		};
 
 		// Remove a TODO list
-		var removeList = function (todoListIndex) {
-			// body...
+		model.removeList = function (listIndex) {
+
+			if (model.todoLists.length >= listIndex) {
+				model.todoLists.splice(listIndex, 1);
+			}
+
+			// clean selection
+			publishListMessage({});
 		};
 
 
 		// Defaults
 		model.todoLists = todoService.getLists();
-		model.viewList = viewList;
 
 		$scope.model = model;
 
