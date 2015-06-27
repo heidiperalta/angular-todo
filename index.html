@@ -22,10 +22,10 @@
 			<form ng-submit="model.addItem(model.newItem)">
 				<input type="text" ng-model="model.newItem" /> <input type="submit" value="Add New" />
 			</form>
-			<ul style="list-style-type: none; padding: 0; list-style-type: none;">
+			<ul style="list-style-type: none; padding: 0;">
 				<li ng-repeat="item in currentList.items">
 					<input type="checkbox" ng-model="item.done" />
-					<input type="text" value={{item.todo}} />
+					<span>{{item.todo}}</span>
 					<input type="button" value=" x " ng-click="model.removeItem(item)" />
 				</li>
 			</ul>
