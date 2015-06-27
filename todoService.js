@@ -33,6 +33,7 @@
 
 		that.currentList = {};
 
+
 		that.getLists = function () {
 			return todoLists;
 		};

@@ -30,11 +30,9 @@
 		};
 
 		// Remove a TODO list
-		model.removeList = function (listIndex) {
+		model.removeList = function (list) {
 
-			if (model.todoLists.length >= listIndex) {
-				model.todoLists.splice(listIndex, 1);
-			}
+			model.todoLists = _.without(model.todoLists, list);
 
 			// clean selection
 			publishListMessage({});
