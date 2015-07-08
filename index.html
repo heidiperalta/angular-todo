@@ -11,7 +11,7 @@
 					<input type="text" ng-model="model.newListName" /> <input type="submit" value="Add New" />
 				</form>
 				<ul style="padding: 0;">
-					<li ng-repeat="list in model.todoLists">
+					<li ng-repeat="list in model.todoLists track by $index">
 						<a href="#" ng-click="model.viewList(list)">{{ list.name }}</a>
 						<input type="button" value="x" ng-click="model.removeList(list)" />
 					</li>
@@ -23,7 +23,7 @@
 				<input type="text" ng-model="model.newItem" /> <input type="submit" value="Add New" />
 			</form>
 			<ul style="list-style-type: none; padding: 0;">
-				<li ng-repeat="item in currentList.items">
+				<li ng-repeat="item in currentList.items track by $index">
 					<input type="checkbox" ng-model="item.done" />
 					<span>{{item.todo}}</span>
 					<input type="button" value="x" ng-click="model.removeItem(item)" />
