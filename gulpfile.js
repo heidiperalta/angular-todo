@@ -2,6 +2,7 @@
 
 var gulp = require('gulp');
 var concat = require('gulp-concat');
+var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 
@@ -18,11 +19,12 @@ gulp.task('concatScripts', function () {
 
 gulp.task('minifyScripts', function () {
 	gulp.src('bin/app.js')
+	.pipe(ngAnnotate())
 	.pipe(uglify())
 	.pipe(rename('app.min.js'))
 	.pipe(gulp.dest('bin'))
 });
 
-gulp.task('default', ['hello'], function () {
-	console.log('mundo cruel!');
+gulp.task('default', ['concatScripts', 'minifyScripts'], function () {
+	console.log('adios mundo cruel!');
 });
